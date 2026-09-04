@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="gallery-page">
+
+<button id="back-btn" class="back-arrow">‹</button>
+
+<h2 class="gallery-page-title">The Whitehead Wall</h2>
+
+<div id="photo-gallery" class="gallery-page-box">
+
+    <button id="add-photo-btn">
+        <img src="/static/add-photo-button.png" id="upload-icon-img" alt="Upload">
+    </button>
+
+    <input type="file" id="photo-input" accept="image/*" style="display:none;">
+
+    <div id="gallery-page-container"></div>
+</div>
+
+<!-- MODAL -->
+<div id="photo-modal">
+    <div id="photo-modal-content">
+        <button id="modal-prev" class="modal-arrow">‹</button>
+        <img id="photo-modal-img" src="">
+        <button id="modal-next" class="modal-arrow">›</button>
+        <button id="delete-photo-btn">Delete</button>
+    </div>
+</div>
+
+
+<script>
+let currentIndex = 0;
+let photoList = [];
+
+document.getElementById("back-btn").onclick = () => {
+    window.location.href = "/";
+};
+
+    // LOAD PHOTOS
+    fetch("/gallery")
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById("gallery-page-container");
+
+            data.photos.forEach((photo, index) => {
+                photoList.push(photo);
+
+                const img = document.createElement("img");
+                img.src = `/static/gallery/${photo}`;
+                img.className = "gallery-page-photo";
+
+                // CLICK TO OPEN MODAL
+                img.onclick = () => {
+                    currentIndex = index;
+                    openModal();
+                };
+
+                container.appendChild(img);
+            });
+        });
+
+    // OPEN MODAL FUNCTION
+    function openModal() {
+        const filename = photoList[currentIndex];
+        document.getElementById("photo-modal-img").src = `/static/gallery/${filename}`;
+        document.getElementById("delete-photo-btn").dataset.filename = filename;
+        document.getElementById("photo-modal").style.display = "flex";
+    }
+
+    // ARROWS — NEXT & PREVIOUS
+    document.getElementById("modal-next").onclick = () => {
+        currentIndex = (currentIndex + 1) % photoList.length;
+        openModal();
+    };
+
+    document.getElementById("modal-prev").onclick = () => {
+        currentIndex = (currentIndex - 1 + photoList.length) % photoList.length;
+        openModal();
+    };
+
+    // CLOSE MODAL WHEN CLICKING BACKGROUND
+    document.getElementById("photo-modal").onclick = (e) => {
+        if (e.target.id === "photo-modal") {
+            document.getElementById("photo-modal").style.display = "none";
+        }
+    };
+
+    // DELETE PHOTO
+    document.getElementById("delete-photo-btn").onclick = () => {
+        const filename = document.getElementById("delete-photo-btn").dataset.filename;
+
+        fetch("/delete_photo", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ filename })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert("Could not delete photo.");
+            }
+        });
+    };
+
+    // UPLOAD BUTTON
+    const addBtn = document.getElementById("add-photo-btn");
+    const input = document.getElementById("photo-input");
+
+    addBtn.onclick = () => input.click();
+
+    input.onchange = () => {
+        const file = input.files[0];
+        const formData = new FormData();
+        formData.append("photo", file);
+
+        fetch("/upload_photo", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+    };
+</script>
+
+
+</body>
+</html>

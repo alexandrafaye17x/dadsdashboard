@@ -1,0 +1,1328 @@
+#gallery-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.gallery-photo {
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+#add-photo-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#deaths-box ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+#deaths-box li {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+
+.newspaper-header {
+  width: 100%;
+  background: #ffffff;
+  padding: 25px 0;
+  border-bottom: 3px solid #000;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.masthead-title {
+  font-family: 'Merriweather', serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #000;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.flip-clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.flip-panel {
+  width: 40px;
+  height: 60px;
+  background: #ffffff;
+  border: 2px solid #000;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Merriweather', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: visible; /* allow sparkles outside the panel */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.flip-panel.flip {
+  animation: flip 0.4s ease;
+}
+
+@keyframes flip {
+  0%   { transform: rotateX(0deg); }
+  50%  { transform: rotateX(-90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.flip-separator {
+  font-family: 'Merriweather', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* 11AM — Butter Yellow Clock */
+.flip-clock.special-hour .flip-panel {
+  background: #F7E9A0;   /* butter yellow */
+  color: #1e3a5f;        /* navy numbers */
+  border-color: #1e3a5f; /* navy border */
+}
+
+/* Colon separators also turn navy */
+.flip-clock.special-hour .flip-separator {
+  color: #1e3a5f;
+}
+
+/* Sparkle on BOTTOM‑LEFT corner of h1 */
+.flip-clock.special-hour .flip-panel[data-unit="h1"]::before {
+    content: "✨";
+    position: absolute;
+    bottom: -12px;   /* sits below the panel */
+    left: -12px;     /* sits left of the panel */
+    font-size: 20px;
+    animation: sparkle 1s infinite alternate;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.2; transform: translateY(0); }
+  100% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* HAPPY ELEVENSIES rainbow text */
+.elevensies-message {
+  text-align: center;
+  font-family: 'Merriweather', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 8px;
+  min-height: 26px;
+  height: auto;
+}
+
+.elevensies-message.active {
+  background: linear-gradient(90deg,
+    #ff0000, #ff7f00, #ffff00,
+    #00ff00, #0000ff, #4b0082, #8f00ff);
+  -webkit-background-clip: text;
+  background-clip: text;        /* THIS LINE WAS MISSING */
+  color: transparent;
+  animation: rainbow-shift 3s linear infinite;
+}
+
+
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.full-date {
+  font-family: 'Merriweather', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.wavy-wrapper {
+    position: relative;
+    width: 440px;
+    height: 270px;
+    background-image: url('/static/wavy-box.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 35px;
+
+    display: flex;                 /* enable flexbox */
+    flex-direction: column;        /* stack date + time vertically */
+    justify-content: center;       /* center vertically */
+    align-items: center;           /* center horizontally */
+
+    margin-left: -20px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+.datetime-inner {
+    text-align: center;
+}
+
+.full-date,
+#full-date {
+    font-size: 1.6rem !important;
+    font-weight: 600;
+    text-align: center;
+}
+
+.elevensies-message {
+    font-family: 'Baloo 2', sans-serif;
+}
+
+.elevensies-message.elevensies-active {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #9400d3
+    );
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowShift 6s linear infinite, elevensiesPop 0.8s ease-out;
+    text-align: center;
+    margin-top: 10px; /* ensures it sits below the clock */
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes elevensiesPop {
+    0% { transform: scale(0.4); opacity: 0; }
+    60% { transform: scale(1.25); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.weather-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+#weather-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+#weather-temp-inside {
+    position: abso2lute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+.weather-box {
+    width: 380px;
+    height: 435px;
+    background-image: url("/static/wavy-box-pink.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    padding: 10px;
+
+    margin-left: -40px;   /* you can change this */
+    margin-top: -50px;  /* now negative values WILL work */
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: -0px; /* now this will ACTUALLY move the pink box left */
+}
+
+.weather-title-wrapper {
+    text-align: center; /* centres BOTH lines together */
+    margin-top: 0px2;
+    margin-bottom: 15px;
+}
+
+.weather-title-line1,
+.weather-title-line2 {
+    font-family: 'Merriweather', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #C84A6A; /* your deep rose outline colour */
+    margin: 0;
+    padding: 0;
+}
+
+#weather-desc {
+    font-size: 18px; /* or 24px */
+    color: black;
+}
+
+.gallery-box {
+    position: relative;
+    width: 480px;   /* adjust to match your PNG */
+    height: 350px;  /* adjust to match your PNG */
+    margin-left: -30px;
+}
+
+.gallery-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* lets clicks pass through */
+}
+
+.gallery-content {
+    position: relative;
+    z-index: 2; /* sits above the frame */
+    padding: 15px; /* adjust spacing inside the frame */
+}
+
+#dashboard-gallery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.gallery-photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid #1a2a4a;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+}
+
+.gallery-title {
+    font-family: 'Merriweather', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #D4A017; /* matches the yellow outline */
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    z-index: 3;
+    position: relative;
+}
+
+#dashboard-gallery-photo {
+    width: 75%;          /* keeps it nicely inside the frame */
+    height: auto;        /* prevents stretching */
+    max-height: 200px;   /* stops it from taking over the page */
+    object-fit: cover;   /* keeps it looking neat */
+    border-radius: 12px; /* cute rounded corners */
+    display: block;
+    margin: 0 auto;      /* centres it */
+    cursor: pointer;     /* clickable */
+}
+
+.gallery-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 0px; /* move photo down slightly */
+}
+
+.gallery-title {
+    margin-top: 60px; /* move title down */
+}
+
+.gallery-title {
+    margin-bottom: 3px; /* pulls title closer to photo */
+}
+
+.gallery-page {
+    background-image: url("/static/backgrounds/wavy-box-green.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.gallery-page-title {
+    font-family: 'Merriweather', serif;
+    font-size: 100px;
+    font-weight: 700;
+    color: #3A5F3A; /* deep green outline colour */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+#gallery-page-container {
+    display: grid;
+    grid-template-columns: repeat(5, 220px);  /* exactly 5 per row */
+    gap: 20px;
+    justify-content: center;                  /* centre the whole block */
+    margin: 0 auto;                           /* centre the container itself */
+}
+
+.gallery-page-photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid #1a2a4a;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+}
+
+.gallery-page-box {
+    position: relative;   /* ← THIS is the missing piece */
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#add-photo-btn {
+    position: absolute;
+    right: 50px;   /* moved left */
+    top: 70px;     /* moved down */
+    background: none;
+    border: none;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;
+    border-radius: 0;
+}
+
+
+#photo-gallery {
+    position: relative;
+}
+
+#upload-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* shows your image naturally */
+    border-radius: 0;      /* no circle */
+    pointer-events: none;  /* clicking still works */
+}
+
+#photo-modal {
+    display: none;               /* hidden until clicked */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7); /* dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#photo-modal-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+#photo-modal-img {
+    max-width: 80vw;
+    max-height: 80vh;
+    border-radius: 10px;
+}
+
+#delete-photo-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #C84A6A;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #3A5F3A;          /* your deep green */
+    font-size: 60px;         /* big and clear */
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 20;
+    padding: 0;
+}
+
+#modal-prev {
+    left: -80px;   /* move left of the image */
+}
+
+#modal-next {
+    right: -80px;  /* move right of the image */
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: #3A5F3A;   /* your deep green */
+    font-size: 50px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.container-row2 {
+    display: flex;
+    gap: 20px;
+    margin-top: -40px;
+    margin-left: 20px; /* aligns with your first row */
+}
+
+#f1-box {
+    width: 500px;
+    height: auto;
+    position: relative;
+    flex-shrink: 0;   /* ⭐ prevents flexbox from shrinking it */
+    margin-left: -30px;
+}
+
+
+#f1-box-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.f1-title-wrapper {
+    position: absolute;
+    top: 60px;          /* move DOWN from the top of the PNG */
+    left: 50%;
+    transform: translateX(-50%);  /* centre horizontally only */
+    text-align: center;
+    pointer-events: none;
+}
+
+.f1-title-line1,
+.f1-title-line2 {
+    font-family: 'Merriweather', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #D46A2E; /* your dark orange outline colour */
+    margin: 0;
+    line-height: 1.2;
+}
+
+.f1-content {
+    position: absolute;
+    top: 90px; /* pushes content BELOW the title */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: calc(100% - 110px); /* leaves space for the title */
+    display: flex;
+    justify-content: space-between;
+}
+
+.f1-left,
+.f1-right {
+    width: 48%;
+    font-family: 'Merriweather', serif;
+    color: #3A3A3A;
+    font-size: 18px;
+}
+
+/* ⭐ Vertical line down the middle */
+.f1-content::before {
+    content: "";
+    position: absolute;
+    top: 40px;          /* start below the title */
+    left: 40%;
+    width: 3px;
+    height: 200px;       /* ⭐ FIXED HEIGHT */
+    background-color: #D46A2E;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+
+.f1-left {
+    font-family: 'Merriweather', serif;
+    color: #000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 50px; /* ⭐ pushes the whole block down */
+    margin-left: -20px; /* ⭐ pushes the whole block right */
+}
+
+.clickable-title {
+    cursor: pointer;
+    user-select: none;
+}
+
+#f1-box * {
+    pointer-events: auto;
+}
+
+#f1-box-img {
+    pointer-events: none;
+}
+
+.driver-name {
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    font-family: 'Merriweather', serif;
+}
+
+.driver-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.driver-pos {
+    width: 26px;
+    height: 26px;
+    background: #D46A2E;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Merriweather', serif;
+}
+
+.driver-bubble {
+    padding: 6px 12px;
+    border-radius: 20px; /* ⭐ speech bubble shape */
+    color: white;
+    font-weight: 600;
+    font-family: 'Merriweather', serif;
+    font-size: 15px;
+    display: inline-block;
+    min-width: 140px;
+    position: relative;
+}
+
+.f1-right {
+    display: block;
+    width: auto;
+    margin-top: 70px;   /* adjust this number to move them down */
+    transform: translateX(-30px);  /* try -20, -30, -40 */
+}
+
+.f1-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.driver-row {
+    width: fit-content;
+}
+
+.leaderboard-title {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;          /* black */
+    margin: 0 0 12px 0;   /* space below the title */
+    text-align: left;     /* aligns with your bubbles */
+}
+
+.leaderboard-title {
+    margin-left: 50px;    /* nudge right */
+}
+
+.raceweek-title {
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;          /* black */
+    margin: 0 0 12px 0;   /* spacing below the title */
+    text-align: center;   /* matches your left-side centering */
+}
+
+.raceweek-title {
+    margin-left: 10px;   /* nudge left */
+    margin-top: 20px;    /* nudge down */
+}
+
+#f1-race-name,
+#f1-race-date,
+#f1-race-time {
+    margin: 0;          /* removes browser spacing */
+    padding: 4px;         /* optional, keeps it tight */
+}
+
+/* Darkened background overlay */
+#raceweek-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.45); /* darken background */
+    display: none;
+    z-index: 900;
+    backdrop-filter: blur(2px); /* optional soft blur */
+}
+
+/* Modal box */
+#raceweek-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 480px;
+    max-width: 90%;
+    background: #fff;
+    border-radius: 18px;          /* rounded corners */
+    border: 3px solid #fff;       /* white outline */
+    padding: 20px;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 0 25px rgba(0,0,0,0.25);
+    transition: all 0.25s ease;
+}
+
+/* Fade-in animation */
+#raceweek-modal.show {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#raceweek-overlay.show {
+    display: block;
+}
+
+/* Close button */
+#raceweek-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Circuit map container */
+.rw-map {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Circuit map image */
+#rw-circuit-map {
+    width: 100%;
+    max-width: 350px;   /* nice size */
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    background: #fff;   /* prevents invisible SVG on dark backgrounds */
+    padding: 10px;
+}
+
+/* Orange bubble style */
+.rw-bubble {
+    background: #FAD7A0; /* pastel orange */
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #000;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    width: fit-content;
+    max-width: 100%;
+    white-space: nowrap;
+
+    margin: 0;
+
+    /* ⭐ darker orange outline */
+    border: 2px solid #E6A86A;
+}
+
+
+/* Stack bubbles vertically */
+.rw-sessions,
+.rw-circuit-info {
+    display: flex;
+    flex-direction: column;   /* ⭐ forces bubbles to stack */
+    gap: 8px;                 /* ⭐ spacing between bubbles */
+}
+
+.rw-sessions {
+    margin-bottom: 10px;   /* ⭐ adds clean space before circuit info */
+}
+
+.leaderboard-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 999999;
+}
+
+.leaderboard-box {
+    background: white;
+    width: 350px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#leaderboard-close {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.leaderboard-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0; /* grid handles spacing now */
+    padding: 8px 10px; /* smaller bubble */
+    border-radius: 12px;
+}
+
+.leaderboard-row {
+    border: 1px solid rgba(255,255,255,0.25); /* soft outline */
+}
+
+.flag-icon {
+    width: 28px;
+    height: 18px;
+    border-radius: 3px;
+}
+
+.driver-position {
+    font-weight: bold;
+    width: 30px;
+}
+
+.driver-number {
+    font-weight: bold;
+}
+
+.driver-name {
+    font-weight: 500;
+}
+
+.driver-points {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+#leaderboard-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px; /* space between columns */
+    row-gap: 12px;    /* space between rows */
+    padding: 20px;
+    margin-left: -20px; /* aligns with your title */
+    margin-top: -20px;   /* adds space above the first row */
+}
+
+/* Make the overlay allow full width */
+#leaderboard-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Make the inner modal box wider */
+#leaderboard-modal .leaderboard-box {
+    width: 80%;
+    max-width: 900px;
+}
+
+#leaderboard-modal {
+    display: none;
+}
+
+#leaderboard-content {
+    max-height: 60vh;      /* ⭐ controls how tall the content can be */
+    overflow-y: auto;      /* ⭐ adds the mini scroll bar */
+    padding-right: -35px;    /* avoids clipping the right side */
+}
+
+#leaderboard-content {
+    overflow-x: hidden; /* removes bottom scroll bar */
+}
+
+.leaderboard-row.haas,
+.leaderboard-row.haas span {
+    color: black !important;
+}
+
+.leaderboard-row {
+    border: 3px solid black;
+}
+
+#football-box {
+    position: relative;
+    width: 100%;
+    height: 200px; /* adjust later */
+}
+
+#football-box-img {
+    width: 500px;
+    height: 380px;
+    position: relative;
+    flex-shrink: 0;   /* ⭐ prevents flexbox from shrinking it */
+    margin-left: -10px;
+    display: block;
+}
+
+#football-content {
+    position: absolute;
+    top: 60px;
+    left: 0;
+
+    width: 500px;     /* EXACT width of your PNG */
+    height: 380px;    /* EXACT height of your PNG */
+
+    padding: 0;       /* stops content from pushing outside */
+    overflow: hidden; /* prevents ANY spillover */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.football-title {
+    font-family: 'Merriweather', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #3A5F3A;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: -25px;
+    margin-bottom: 10px;
+}
+
+.football-bubbles {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ⭐ centres the bubbles */
+    gap: 8px;
+    margin-top: 10px;   /* ⭐ moves bubbles DOWN */
+}
+
+.bubble {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;     /* ⭐ centre text horizontally */
+    text-align: center;      /* ⭐ centre multi-line text */
+    width: auto;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 6px 10px;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+    white-space: nowrap;
+}
+
+.bubble {
+    position: relative; /* REQUIRED for animations */
+    overflow: visible;  /* allow football to travel */
+}
+
+.bubble-title {
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #3A5F3A;
+    margin-bottom: 4px;
+}
+
+.bubble-fixture {
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    color: #3A5F3A;
+    line-height: 1.3;
+}
+
+/* NEWCASTLE - charcoal */
+#bubble-newcastle {
+    background: #1A1A1A;
+    color: white;
+}
+
+/* MAN CITY - sky blue */
+#bubble-mancity {
+    background: #7EC8FF;
+    color: #003366;
+}
+
+/* BORO - official red */
+#bubble-boro {
+    background: #C8102E;
+    color: white;
+}
+
+/* Make text inherit bubble colour */
+.bubble-fixture {
+    color: inherit;
+}
+
+/* -------------------------------------- */
+/* ⭐ Bubble twinkle animation */
+/* -------------------------------------- */
+.bubble-twinkle {
+    animation: bubbleTwinkle 0.4s ease-out;
+}
+
+@keyframes bubbleTwinkle {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.4); }
+    100% { filter: brightness(1); }
+}
+
+/* -------------------------------------- */
+/* ⭐ GOAL text twinkle animation */
+/* -------------------------------------- */
+.goal-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 6px rgba(0,0,0,0.4);
+    z-index: 5; /* stays above football */
+    animation: goalTextTwinkle 1.2s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes goalTextTwinkle {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+        filter: brightness(1);
+    }
+    40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.3);
+        filter: brightness(1.4);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+        filter: brightness(1);
+    }
+}
+
+/* -------------------------------------- */
+/* ⭐ Football streak (JS‑controlled) */
+/* -------------------------------------- */
+.goal-streak {
+    position: absolute;
+    top: 50%;
+    left: 5px; /* tiny offset prevents jitter */
+    transform: translateY(-50%);
+    font-size: 30px;
+    z-index: 4; /* under GOAL text */
+    pointer-events: none;
+}
+
+/* -------------------------------------- */
+/* ⭐ Bubble container must allow animation */
+/* -------------------------------------- */
+.bubble {
+    position: relative;
+    overflow: visible; /* REQUIRED so football isn't clipped */
+}
+
+/* ⭐ RADIO BOX ⭐ */
+#radio-box {
+    position: relative;
+    width: 370px;
+    height: 370px;
+    flex-shrink: 0;
+}
+
+/* ⭐ BACKGROUND PNG ⭐ */
+#radio-box-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 8px;
+    left: -25px;
+    z-index: 1;
+}
+
+/* ⭐ RADIO TITLE ⭐ */
+#radio-title {
+    position: relative;
+    z-index: 3;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 60px;
+    color: #8b0000;
+    line-height: 1.2;
+    font-size: 26px;
+    margin-left: -38px;
+}
+
+/* ⭐ OFF-AIR VINYL ⭐ */
+#mog-offair {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    z-index: 3;
+}
+
+/* ⭐ LIVE MODE ⭐ */
+#mog-live {
+    display: none;
+    z-index: 3;
+}
+
+#vinyl-offair-img,
+#vinyl-live-img {
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    z-index: 3;
+
+    margin-top: 15px;   /* ⭐ move DOWN */
+    margin-left: 140px;  /* ⭐ move RIGHT */
+}
+
+/* ⭐ LIVE VINYL SPIN ⭐ */
+#vinyl-live-img {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ⭐ SONG INFO ⭐ */
+#song-info {
+    margin-top: 50px;
+    color: black;
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    text-align: center;
+    z-index: 9999;
+}
+
+#song-info {
+    display: block;
+}
+
+@keyframes neonPulse {
+    0% {
+        opacity: 0.55;
+        text-shadow:
+            0 0 4px #8b0000,
+            0 0 8px #8b0000,
+            0 0 14px #8b0000;
+    }
+    50% {
+        opacity: 1;
+        text-shadow:
+            0 0 8px #8b0000,
+            0 0 16px #8b0000,
+            0 0 28px #8b0000;
+    }
+    100% {
+        opacity: 0.55;
+        text-shadow:
+            0 0 4px #8b0000,
+            0 0 8px #8b0000,
+            0 0 14px #8b0000;
+    }
+}
+
+/* ⭐ ON • AIR INDICATOR (vertical, left side) ⭐ */
+#onair-indicator {
+    position: absolute;
+    top: 170px;   /* your new DOWN position */
+    left: 60px;   /* your new RIGHT position */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 4;
+}
+
+.onair-text {
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #8b0000;
+    text-shadow:
+        0 0 6px #8b0000,
+        0 0 12px #8b0000,
+        0 0 20px #8b0000;
+
+    animation: neonPulse 2.5s ease-in-out infinite; /* ⭐ THIS makes it twinkle */
+}
+
+.onair-dot {
+    width: 14px;
+    height: 14px;
+    background: #ff2a2a;
+    border-radius: 50%;
+    box-shadow:
+        0 0 6px #ff2a2a,
+        0 0 12px #ff2a2a,
+        0 0 20px #ff2a2a;
+}
+
+#offair-indicator {
+    position: absolute;
+    top: 170px;        /* adjust to match ON AIR placement */
+    left: 60px;        /* same left alignment as ON AIR */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 4;
+}
+
+.offair-text {
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;   /* ⭐ charcoal black neon ⭐ */
+    text-shadow:
+        0 0 6px #1a1a1a,
+        0 0 12px #1a1a1a,
+        0 0 20px #1a1a1a;
+    animation: neonPulse 2.5s ease-in-out infinite;   /* ⭐ twinkle exactly like ON AIR ⭐ */
+}
+
+.offair-dot {
+    width: 14px;
+    height: 14px;
+    background: #1a1a1a;   /* charcoal black */
+    border-radius: 50%;
+    box-shadow:
+        0 0 6px #1a1a1a,
+        0 0 12px #1a1a1a,
+        0 0 20px #1a1a1a;
+    animation: neonPulse 2.5s ease-in-out infinite;   /* ⭐ dot twinkles too ⭐ */
+}
+
+.vinyl-spin {
+    animation: vinylSpin 3s linear infinite;
+}
+
+@keyframes vinylSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ⭐ VINYL MUST BE ABOVE EVERYTHING ⭐ */
+#vinyl-live-img,
+#vinyl-offair-img {
+    position: relative;
+    z-index: 99999;   /* higher than song-info */
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* ⭐ SONG INFO MUST BE BELOW VINYL ⭐ */
+#song-info {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-70%);
+    z-index: 2;      /* LOWER than vinyl */
+}
+
+#vinyl-wrapper {
+    position: relative;
+    pointer-events: auto;   /* ⭐ THIS is the missing piece */
+    z-index: 9999;
+}
+
+#mog-live,
+#mog-offair {
+    pointer-events: auto;
+}

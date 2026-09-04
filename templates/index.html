@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dad's Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <link rel="stylesheet" href="/static/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="newspaper-header">
+    <h1 class="masthead-title">THE DAILY DAD</h1>
+</div>
+
+<div class="container">
+
+    <!-- BLUE DATE/TIME BOX -->
+    <div class="wavy-wrapper">
+        <div class="datetime-inner">
+
+            <div class="full-date" id="full-date"></div>
+
+            <div class="flip-clock" id="flip-clock">
+                <div class="flip-panel" data-unit="h1"><span>0</span></div>
+                <div class="flip-panel" data-unit="h2"><span>0</span></div>
+                <div class="flip-separator">:</div>
+                <div class="flip-panel" data-unit="m1"><span>0</span></div>
+                <div class="flip-panel" data-unit="m2"><span>0</span></div>
+                <div class="flip-separator">:</div>
+                <div class="flip-panel" data-unit="s1"><span>0</span></div>
+                <div class="flip-panel" data-unit="s2"><span>0</span></div>
+            </div>
+
+            <div class="elevensies-message" id="elevensies-message"></div>
+        </div>
+    </div>
+
+    <!-- PINK WEATHER BOX -->
+   <div class="weather-box">
+
+    <div class="weather-title-wrapper">
+        <h2 class="weather-title-line1">Is It Safe For</h2>
+        <h2 class="weather-title-line2">Dad Outside?</h2>
+    </div>
+
+    <div class="weather-icon">
+        <img id="weather-img" src="" alt="weather icon">
+        <span id="weather-temp-inside"></span>
+    </div>
+
+    <p id="weather-desc"></p>
+</div>
+
+<div class="gallery-box">
+    <img class="gallery-frame" src="/static/wavy-box-yellow.png" alt="gallery frame">
+
+    <div class="gallery-title">The Whitehead Wall</div>
+
+    <div class="gallery-spacer"></div>
+
+    <div class="gallery-content">
+        <div id="dashboard-gallery-container">
+            <img id="dashboard-gallery-photo" src="" alt="family photo">
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container-row2">
+
+    <!-- ⭐⭐⭐ F1 BOX ⭐⭐⭐ -->
+    <div id="f1-box">
+        <img src="/static/wavy-box-orange.png" id="f1-box-img">
+
+        <div class="f1-title-wrapper">
+            <h3 class="f1-title-line1 clickable-title">It's Lights Out</h3>
+            <h3 class="f1-title-line2 clickable-title">& Away We Go</h3>
+        </div>
+
+        <audio id="crofty-audio" src="/static/crofty.mp3"></audio>
+
+        <div class="f1-content">
+
+            <div class="f1-left">
+                <h4 class="raceweek-title">Race Week</h4>
+                <p id="f1-race-name"></p>
+                <p id="f1-race-date"></p>
+                <p id="f1-race-time"></p>
+            </div>
+
+            <div class="f1-right">
+                <h4 class="leaderboard-title">Leaderboard</h4>
+
+                <div class="driver-row">
+                    <span class="driver-pos">1</span>
+                    <span id="f1-driver1" class="driver-bubble"></span>
+                </div>
+
+                <div class="driver-row">
+                    <span class="driver-pos">2</span>
+                    <span id="f1-driver2" class="driver-bubble"></span>
+                </div>
+
+                <div class="driver-row">
+                    <span class="driver-pos">3</span>
+                    <span id="f1-driver3" class="driver-bubble"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ⭐⭐⭐ FOOTBALL BOX ⭐⭐⭐ -->
+    <div id="football-box">
+        <img src="/static/wavy-box-green-db.png" id="football-box-img">
+
+        <div id="football-content">
+
+            <h3 class="football-title">Howay The Blue Boro</h3>
+
+            <div class="football-bubbles">
+
+                <!-- NEWCASTLE -->
+                <div class="bubble" id="bubble-newcastle">
+                    <div class="bubble-fixture" id="fixture-newcastle">
+                        Newcastle vs Chelsea<br>12.08.26 at 19:45
+                    </div>
+                </div>
+
+                <!-- MAN CITY -->
+                <div class="bubble" id="bubble-mancity">
+                    <div class="bubble-fixture" id="fixture-mancity">
+                        Man City vs Arsenal<br>13.08.26 at 20:00
+                    </div>
+                </div>
+
+                <!-- BORO -->
+                <div class="bubble" id="bubble-boro">
+                    <div class="bubble-fixture" id="fixture-boro">
+                        Middlesbrough vs Leeds<br>14.08.26 at 15:00
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ⭐⭐⭐ RADIO BOX ⭐⭐⭐ -->
+    <div id="radio-box">
+        <img src="/static/wavy-box-red.png" id="radio-box-img">
+
+        <!-- ⭐ RADIO TITLE ⭐ -->
+        <div id="radio-title">
+            <span>Standing In The</span><br>
+            <span>Shadows Of Lev</span>
+        </div>
+
+        <audio id="allfmPlayer" src="https://radio-backend.onrender.com/stream" preload="none"></audio>
+
+        <!-- ⭐ OFF-AIR VINYL (shows when Mog is NOT live) ⭐ -->
+        <div id="mog-offair">
+            <img src="/static/mog-off.png" id="vinyl-offair-img">
+
+            <!-- ⭐ NEW CHARCOAL NEON OFF • ● • AIR ⭐ -->
+            <div id="offair-indicator">
+                <span class="offair-text">OFF</span>
+                <span class="offair-dot"></span>
+                <span class="offair-text">AIR</span>
+            </div>
+        </div>
+
+        <!-- ⭐ LIVE MODE (shows ONLY when Mog is live) ⭐ -->
+        <div id="mog-live">
+
+            <!-- ⭐ ON • ● • AIR (vertical indicator on left) ⭐ -->
+            <div id="onair-indicator">
+                <span class="onair-text">ON</span>
+                <span class="onair-dot"></span>
+                <span class="onair-text">AIR</span>
+            </div>
+
+            <!-- ⭐ LIVE VINYL (spinning, on the right) ⭐ -->
+            <div id="vinyl-wrapper">
+                <img src="/static/mog-live.png" id="vinyl-live-img">
+            </div>
+
+            <!-- ⭐ SONG INFO ⭐ -->
+            <div id="song-info">
+                <span id="song-title"></span><br>
+                <span id="song-artist"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="deaths-box" class="box">
+    <h2>Celebrities Who Died This Week</h2>
+    <ul id="deaths-list"></ul>
+</div>
+
+<div id="verse"></div>
+
+<div id="metadata"></div>
+
+<div class="box" id="youtube-box">
+    <h2>YouTube</h2>
+    <div id="youtube-content">Loading...</div>
+</div>
+
+<div class="box" id="news-box">
+    <h2>News Headlines</h2>
+    <div id="news-content">Loading...</div>
+</div>
+
+<div class="box" id="recipes-box">
+    <h2>Recipe Book</h2>
+    <button onclick="openAddRecipeForm()">Add Recipe</button>
+    <div id="recipes-content">Loading recipes...</div>
+</div>
+
+<!-- Race Week Modal -->
+<div id="raceweek-overlay"></div>
+
+<div id="raceweek-modal" class="modal">
+    <div class="modal-content">
+
+        <h2 id="rw-race-name"></h2>
+        <h3 id="rw-circuit-name"></h3>
+        <p id="rw-location"></p>
+
+        <div class="rw-sessions">
+            <div class="rw-bubble">Practice 1: <span id="rw-fp1"></span></div>
+            <div class="rw-bubble">Practice 2: <span id="rw-fp2"></span></div>
+            <div class="rw-bubble">Practice 3: <span id="rw-fp3"></span></div>
+            <div class="rw-bubble">Qualifying: <span id="rw-qualifying"></span></div>
+            <div class="rw-bubble">Race: <span id="rw-race"></span></div>
+
+            <div id="rw-sprint-row" class="rw-bubble" style="display:none;">
+                Sprint: <span id="rw-sprint"></span>
+            </div>
+        </div>
+
+        <div class="rw-circuit-info">
+            <div class="rw-bubble" id="rw-track-length"></div>
+            <div class="rw-bubble" id="rw-lap-count"></div>
+            <div class="rw-bubble" id="rw-race-distance"></div>
+        </div>
+
+        <button id="raceweek-close">Close</button>
+    </div>
+</div>
+
+<!-- EMPTY LEADERBOARD MODAL -->
+<div id="leaderboard-modal" class="leaderboard-overlay">
+    <div class="leaderboard-box">
+        <h2>Leaderboard</h2>
+
+        <!-- NEW: Placeholder for data -->
+        <div id="leaderboard-content">
+            <p>Loading…</p>
+        </div>
+
+        <button id="leaderboard-close">Close</button>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ⭐ RADIO PLAYER ⭐ */
+    const radio = document.getElementById("allfmPlayer");
+
+    /* ⭐ VINYL ELEMENTS ⭐ */
+    const vinylLive = document.getElementById("vinyl-live-img");
+    const vinylOff = document.getElementById("vinyl-offair-img");
+
+    /* ⭐ OFF AIR INDICATOR ⭐ */
+    const offairIndicator = document.getElementById("offair-indicator");
+    const offairTexts = offairIndicator.querySelectorAll(".offair-text");
+
+    /* ⭐ MOG SECTIONS ⭐ */
+    const mogLiveSection = document.getElementById("mog-live");
+    const mogOffAirSection = document.getElementById("mog-offair");
+    const onAirIndicator = document.getElementById("onair-indicator");
+
+    /* ⭐ GET UK TIME ⭐ */
+    function getUKTime() {
+        const now = new Date();
+        return new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" }));
+    }
+
+    /* ⭐ UPDATE MOG LIVE VISIBILITY ⭐ */
+    function updateMogLiveVisibility() {
+        const ukTime = getUKTime();
+        const day = ukTime.getDay();
+        const hour = ukTime.getHours();
+
+        const isMogShowDay = (day === 6);
+        const isMogShowTime = (hour >= 9 && hour < 11);
+
+        if (isMogShowDay && isMogShowTime) {
+            mogLiveSection.style.display = "block";
+            mogOffAirSection.style.display = "none";
+            onAirIndicator.style.display = "flex";
+        } else {
+            mogLiveSection.style.display = "none";
+            mogOffAirSection.style.display = "block";
+            onAirIndicator.style.display = "none";
+        }
+    }
+
+    updateMogLiveVisibility();
+    setInterval(updateMogLiveVisibility, 60000);
+
+    /* ⭐ AUTO-PLAY DURING MOG SHOW ⭐ */
+    const ukTime = getUKTime();
+    const day = ukTime.getDay();
+    const hour = ukTime.getHours();
+    const isMogShowDay = (day === 6);
+    const isMogShowTime = (hour >= 9 && hour < 11);
+
+    if (isMogShowDay && isMogShowTime) {
+        radio.play();
+    }
+
+    /* ⭐ UPDATE OFF AIR → ALL FM TEXT ⭐ */
+    function updateOffAirText(isPlaying) {
+        const ukTime = getUKTime();
+        const day = ukTime.getDay();
+        const hour = ukTime.getHours();
+
+        const isMogShowDay = (day === 6);
+        const isMogShowTime = (hour >= 9 && hour < 11);
+
+        // Never change text during Mog LIVE
+        if (isMogShowDay && isMogShowTime) return;
+
+        if (isPlaying) {
+            offairTexts[0].textContent = "ALL";
+            offairTexts[1].textContent = "FM";
+        } else {
+            offairTexts[0].textContent = "OFF";
+            offairTexts[1].textContent = "AIR";
+        }
+    }
+
+    /* ⭐ VINYL CLICK TOGGLE ⭐ */
+    function toggleRadio() {
+        if (radio.paused) {
+            radio.play();
+            vinylLive.classList.add("vinyl-spin");
+            vinylOff.classList.add("vinyl-spin");
+            updateOffAirText(true);
+        } else {
+            radio.pause();
+            vinylLive.classList.remove("vinyl-spin");
+            vinylOff.classList.remove("vinyl-spin");
+            updateOffAirText(false);
+        }
+    }
+
+    vinylLive.onclick = toggleRadio;
+    vinylOff.onclick = toggleRadio;
+
+    /* ⭐ METADATA LOADER ⭐ */
+    async function loadAllFmMetadata() {
+        try {
+            const response = await fetch("https://allfm-backend.vercel.app/api/allfm");
+            const data = await response.json();
+
+            const track = data?.track?.title || "";
+            const artist = data?.track?.artist || "";
+
+            document.getElementById("song-title").textContent = track;
+            document.getElementById("song-artist").textContent = artist;
+
+        } catch (error) {
+            console.error("Metadata error:", error);
+        }
+    }
+
+    loadAllFmMetadata();
+    setInterval(loadAllFmMetadata, 30000);
+
+});
+</script>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+
+        // Time
+        const time = now.toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+        // Date
+        const date = now.toLocaleDateString("en-GB", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+
+        document.getElementById("time").innerText = time;
+        document.getElementById("date").innerText = date;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+<script>
+function getWeatherIcon(weatherMain) {
+    const icons = {
+        Clear: "/static/weather/sun.png",
+        Clouds: "/static/weather/cloud.png",
+        Rain: "/static/weather/rain.png",
+        Snow: "/static/weather/snow.png",
+        Mist: "/static/weather/fog.png",
+        Fog: "/static/weather/fog.png",
+        Thunderstorm: "/static/weather/lightning.png"
+    };
+
+    return icons[weatherMain] || icons["Clouds"];
+}
+
+async function updateWeather() {
+    const apiKey = "a2ecbf4696a2e42c9ac08e8b85dc4334";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Manchester,uk&units=metric&appid=${apiKey}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const temp = Math.round(data.main.temp);
+    const weatherMain = data.weather[0].main;
+    const weatherDesc = data.weather[0].description.toLowerCase();
+
+    document.getElementById("weather-img").src = getWeatherIcon(weatherMain);
+    document.getElementById("weather-temp-inside").textContent = `${temp}°C`;
+    document.getElementById("weather-desc").textContent = weatherDesc;
+}
+
+updateWeather();
+
+</script>
+
+<script>
+const teamColors = {
+    "Red Bull": "#3671C6",
+    "Ferrari": "#E8002D",
+    "McLaren": "#FF8000",
+    "Mercedes": "#00D2BE",
+    "Aston Martin": "#006F62",
+    "RB": "#6692FF",
+    "Haas": "#FFFFFF",
+    "Williams": "#005AFF",
+    "Kick Sauber": "#00E701"
+};
+
+async function loadF1() {
+    try {
+        const res = await fetch("/f1");
+        const data = await res.json();
+
+        if (data.error) {
+            document.getElementById("f1-race-name").innerText = "F1 data unavailable";
+            return;
+        }
+
+        // LEFT SIDE — Next Race Info
+        document.getElementById("f1-race-name").innerText = data.race_name;
+        document.getElementById("f1-race-date").innerText = data.race_date;
+        document.getElementById("f1-race-time").innerText = data.race_time;
+
+        // RIGHT SIDE — Top 3 Drivers (names)
+        document.getElementById("f1-driver1").innerText = data.top3[0];
+        document.getElementById("f1-driver2").innerText = data.top3[1];
+        document.getElementById("f1-driver3").innerText = data.top3[2];
+
+        // ⭐ NEW: Get team names sent from Python
+        const team1 = data.top3Teams[0];
+        const team2 = data.top3Teams[1];
+        const team3 = data.top3Teams[2];
+
+        // ⭐ NEW: Apply background colours based on team
+        document.getElementById("f1-driver1").style.backgroundColor = teamColors[team1];
+        document.getElementById("f1-driver2").style.backgroundColor = teamColors[team2];
+        document.getElementById("f1-driver3").style.backgroundColor = teamColors[team3];
+
+    } catch {
+        document.getElementById("f1-race-name").innerText = "F1 data unavailable";
+    }
+}
+
+loadF1();
+</script>
+
+
+<script>
+document.querySelectorAll('.clickable-title').forEach(el => {
+    el.addEventListener('click', () => {
+        console.log("TITLE CLICKED!");
+        const audio = document.getElementById('crofty-audio');
+        console.log("AUDIO ELEMENT:", audio);
+        audio.currentTime = 0;
+        audio.play();
+    });
+});
+</script>
+
+
+<script>
+    async function loadFootball() {
+        try {
+            const res = await fetch("/football");
+            const data = await res.json();
+
+            function formatDate(d) {
+                const [yyyy, mm, dd] = d.split("-");
+                return `${dd}.${mm}.${yyyy.slice(2)}`; // dd.mm.yy
+            }
+
+            document.getElementById("fixture-newcastle").innerHTML =
+                `${data.newcastle.opponent}<br>${formatDate(data.newcastle.date)} at ${data.newcastle.time}`;
+
+            document.getElementById("fixture-mancity").innerHTML =
+                `${data.man_city.opponent}<br>${formatDate(data.man_city.date)} at ${data.man_city.time}`;
+
+            document.getElementById("fixture-boro").innerHTML =
+                `${data.middlesbrough.opponent}<br>${formatDate(data.middlesbrough.date)} at ${data.middlesbrough.time}`;
+        } catch {
+            document.getElementById("fixture-newcastle").innerText = "Unavailable";
+            document.getElementById("fixture-mancity").innerText = "Unavailable";
+            document.getElementById("fixture-boro").innerText = "Unavailable";
+        }
+    }
+
+    loadFootball();
+</script>
+
+
+<script>
+    async function loadYouTube() {
+        try {
+            const res = await fetch("/youtube");
+            const data = await res.json();
+
+            const box = document.getElementById("youtube-content");
+
+            box.innerHTML = `
+            <strong>Coach Colin:</strong> ${data.coach_colin.title} <br>
+            <a href="${data.coach_colin.link}" target="_blank">Watch</a><br><br>
+
+            <strong>Candace Owens:</strong> ${data.candace_owens.title} <br>
+            <a href="${data.candace_owens.link}" target="_blank">Watch</a><br><br>
+
+            <strong>Patricia Delicious Nutrition:</strong> ${data.patricia_delicious.title} <br>
+            <a href="${data.patricia_delicious.link}" target="_blank">Watch</a>
+        `;
+        } catch {
+            document.getElementById("youtube-content").innerText = "YouTube data unavailable";
+        }
+    }
+
+    loadYouTube();
+</script>
+
+<script>
+    async function loadNews() {
+        try {
+            const res = await fetch("/news");
+            const data = await res.json();
+
+            const box = document.getElementById("news-content");
+
+            if (!data.headlines || data.headlines.length === 0) {
+                box.innerText = "No news available";
+                return;
+            }
+
+            let html = "";
+
+            data.headlines.forEach(item => {
+                html += `
+                <strong>${item.source}:</strong>
+                <a href="${item.link}" target="_blank">${item.title}</a>
+                <br><br>
+            `;
+            });
+
+            box.innerHTML = html;
+
+        } catch {
+            document.getElementById("news-content").innerText = "News unavailable";
+        }
+    }
+
+    loadNews();
+</script>
+
+<script>
+    async function loadRecipes() {
+        try {
+            const res = await fetch("/recipes");
+            const data = await res.json();
+
+            const box = document.getElementById("recipes-content");
+
+            if (!data.recipes || data.recipes.length === 0) {
+                box.innerHTML = "No recipes yet.";
+                return;
+            }
+
+            let html = "";
+
+            data.recipes.forEach(recipe => {
+                html += `
+                <div>
+                    <a href="#" onclick="openRecipe('${recipe.id}')">
+                        ${recipe.title}
+                    </a>
+                </div>
+                <br>
+            `;
+            });
+
+            box.innerHTML = html;
+
+        } catch {
+            document.getElementById("recipes-content").innerText = "Could not load recipes.";
+        }
+    }
+
+    loadRecipes();
+</script>
+
+<script>
+    async function openRecipe(id) {
+        // Fetch the recipe data
+        const res = await fetch(`/recipe/${id}`);
+        const recipe = await res.json();
+
+        // Start building the viewer HTML
+        let html = `
+        <h2>${recipe.title}</h2>
+    `;
+
+        // Image (optional)
+        if (recipe.image) {
+            html += `
+            <img src="${recipe.image}" 
+                 style="max-width: 100%; border: 1px solid #ccc; margin-bottom: 20px;">
+        `;
+        }
+
+        // Ingredients
+        html += `
+        <h3>Ingredients</h3>
+        <ul>
+    `;
+
+        recipe.ingredients.forEach(item => {
+            html += `<li>${item}</li>`;
+        });
+
+        html += `
+        </ul>
+
+        <h3>Steps</h3>
+        <ol>
+    `;
+
+        // Steps
+        recipe.steps.forEach(step => {
+            html += `<li>${step}</li>`;
+        });
+
+        html += `
+        </ol>
+    `;
+
+        // Notes (optional)
+        if (recipe.notes) {
+            html += `
+            <h3>Notes</h3>
+            <p>${recipe.notes}</p>
+        `;
+        }
+
+        // YouTube (optional)
+        if (recipe.youtube) {
+            html += `
+            <h3>Video</h3>
+            <iframe width="100%" height="315" 
+                    src="${recipe.youtube}" 
+                    frameborder="0" allowfullscreen></iframe>
+        `;
+        }
+
+        // Buttons
+        html += `
+        <button onclick="closeRecipeViewer()">Close</button>
+        <button onclick="openEditRecipeForm('${recipe.id}')">Edit</button>
+        <button onclick="deleteRecipe('${recipe.id}')">Delete</button>
+    `;
+
+        // Display the viewer
+        const viewer = document.getElementById("recipe-viewer");
+        viewer.innerHTML = html;
+        viewer.style.display = "block";
+    }
+</script>
+
+<script>
+    function openAddRecipeForm() {
+        const form = document.createElement("div");
+        form.id = "add-recipe-form";
+        form.style.position = "fixed";
+        form.style.top = "10%";
+        form.style.left = "10%";
+        form.style.width = "80%";
+        form.style.height = "80%";
+        form.style.background = "white";
+        form.style.padding = "20px";
+        form.style.overflowY = "scroll";
+        form.style.border = "2px solid black";
+        form.style.zIndex = "9999";
+
+        form.innerHTML = `
+        <button onclick="closeAddRecipeForm()">Close</button>
+        <h2>Add New Recipe</h2>
+
+        <label>Title:</label><br>
+        <input id="recipe-title" style="width: 100%;"><br><br>
+
+        <label>Ingredients (one per line):</label><br>
+        <textarea id="recipe-ingredients" style="width: 100%; height: 120px;"></textarea><br><br>
+
+        <label>Steps (one per line):</label><br>
+        <textarea id="recipe-steps" style="width: 100%; height: 120px;"></textarea><br><br>
+
+        <label>Notes:</label><br>
+        <textarea id="recipe-notes" style="width: 100%; height: 80px;"></textarea><br><br>
+
+        <label>YouTube Link (optional):</label><br>
+        <input id="recipe-youtube" style="width: 100%;"><br><br>
+
+        <label>Image URL (optional):</label><br>
+<input id="recipe-image" style="width: 100%;"><br><br>
+
+        <label>Category:</label><br>
+        <input id="recipe-category" style="width: 100%;" placeholder="Dinner, Snacks, Dessert..."><br><br>
+
+        <button onclick="saveRecipe()">Save Recipe</button>
+    `;
+
+        document.body.appendChild(form);
+    }
+
+    function closeAddRecipeForm() {
+        const form = document.getElementById("add-recipe-form");
+        if (form) form.remove();
+    }
+
+    async function saveRecipe() {
+        const title = document.getElementById("recipe-title").value;
+        const ingredients = document.getElementById("recipe-ingredients").value.split("\n").filter(i => i.trim() !== "");
+        const steps = document.getElementById("recipe-steps").value.split("\n").filter(s => s.trim() !== "");
+        const notes = document.getElementById("recipe-notes").value;
+        const youtube = document.getElementById("recipe-youtube").value;
+        const image = document.getElementById("recipe-image").value;
+        const category = document.getElementById("recipe-category").value;
+
+        const recipeData = {
+            title,
+            ingredients,
+            steps,
+            notes,
+            youtube,
+            category,
+            image
+        };
+
+        try {
+            const res = await fetch("/add_recipe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(recipeData)
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                alert("Recipe saved!");
+                closeAddRecipeForm();
+                loadRecipes(); // refresh the recipe list
+            } else {
+                alert("Could not save recipe.");
+            }
+
+        } catch {
+            alert("Error saving recipe.");
+        }
+    }
+</script>
+
+<script>
+    async function deleteRecipe(id) {
+        if (!confirm("Are you sure you want to delete this recipe?")) return;
+
+        try {
+            const res = await fetch(`/delete_recipe/${id}`, {
+                method: "POST"
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                alert("Recipe deleted.");
+                closeRecipeViewer();
+                loadRecipes();
+            } else {
+                alert("Could not delete recipe.");
+            }
+
+        } catch {
+            alert("Error deleting recipe.");
+        }
+    }
+</script>
+
+<script>
+    async function openEditRecipeForm(id) {
+        const res = await fetch(`/recipe/${id}`);
+        const recipe = await res.json();
+
+        const form = document.createElement("div");
+        form.id = "edit-recipe-form";
+        form.style.position = "fixed";
+        form.style.top = "10%";
+        form.style.left = "10%";
+        form.style.width = "80%";
+        form.style.height = "80%";
+        form.style.background = "white";
+        form.style.padding = "20px";
+        form.style.overflowY = "scroll";
+        form.style.border = "2px solid black";
+        form.style.zIndex = "9999";
+
+        form.innerHTML = `
+        <button onclick="closeEditRecipeForm()">Close</button>
+        <h2>Edit Recipe</h2>
+
+        <label>Title:</label><br>
+        <input id="edit-title" style="width: 100%;" value="${recipe.title}"><br><br>
+
+        <label>Ingredients (one per line):</label><br>
+        <textarea id="edit-ingredients" style="width: 100%; height: 120px;">${recipe.ingredients.join("\n")}</textarea><br><br>
+
+        <label>Steps (one per line):</label><br>
+        <textarea id="edit-steps" style="width: 100%; height: 120px;">${recipe.steps.join("\n")}</textarea><br><br>
+
+        <label>Notes:</label><br>
+        <textarea id="edit-notes" style="width: 100%; height: 80px;">${recipe.notes || ""}</textarea><br><br>
+
+        <label>YouTube Link:</label><br>
+        <input id="edit-youtube" style="width: 100%;" value="${recipe.youtube || ""}"><br><br>
+
+        <label>Image URL:</label><br>
+        <input id="edit-image" style="width: 100%;" value="${recipe.image || ""}"><br><br>
+
+        <label>Category:</label><br>
+        <input id="edit-category" style="width: 100%;" value="${recipe.category || ""}"><br><br>
+
+        <button onclick="saveEditedRecipe('${id}')">Save Changes</button>
+    `;
+
+        document.body.appendChild(form);
+    }
+
+    function closeEditRecipeForm() {
+        const form = document.getElementById("edit-recipe-form");
+        if (form) form.remove();
+    }
+</script>
+
+<script>
+    async function saveEditedRecipe(id) {
+        const updated = {
+            title: document.getElementById("edit-title").value,
+            ingredients: document.getElementById("edit-ingredients").value.split("\n").filter(i => i.trim() !== ""),
+            steps: document.getElementById("edit-steps").value.split("\n").filter(s => s.trim() !== ""),
+            notes: document.getElementById("edit-notes").value,
+            youtube: document.getElementById("edit-youtube").value,
+            image: document.getElementById("edit-image").value,
+            category: document.getElementById("edit-category").value
+        };
+
+        try {
+            const res = await fetch(`/edit_recipe/${id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updated)
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                alert("Recipe updated!");
+                closeEditRecipeForm();
+                closeRecipeViewer();
+                loadRecipes();
+            } else {
+                alert("Could not update recipe.");
+            }
+
+        } catch {
+            alert("Error updating recipe.");
+        }
+    }
+</script>
+
+<script>
+    fetch("/votd")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("verse").innerHTML =
+                `<h2>${data.reference}</h2><p>${data.text}</p>`;
+        });
+</script>
+
+<script>
+    fetch("/gallery")
+    .then(response => response.json())
+    .then(data => {
+        const photos = data.photos;
+        let index = 0;
+
+        const dashboardImg = document.getElementById("dashboard-gallery-photo");
+
+        function updatePhoto() {
+            dashboardImg.src = `/static/gallery/${photos[index]}`;
+            index = (index + 1) % photos.length;
+        }
+
+        updatePhoto(); // show first photo immediately
+        setInterval(updatePhoto, 10000); // change every 10 seconds
+
+        dashboardImg.addEventListener("click", () => {
+            window.location.href = "/gallery_page"; // open full gallery page
+        });
+    });
+
+</script>
+
+<script>
+    fetch("/death_news")
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById("deaths-list");
+            list.innerHTML = "";
+
+            data.deaths.forEach(entry => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <strong>${entry.title}</strong><br>
+                    <small>${entry.source}</small><br>
+                    <p>${entry.summary}</p>
+                    <a href="${entry.link}" target="_blank">Read more</a>
+                `;
+                list.appendChild(li);
+            });
+        });
+</script>
+
+<script>
+  function setPanel(unit, value) {
+    const panel = document.querySelector(`.flip-panel[data-unit="${unit}"]`);
+    if (!panel) return;
+    const span = panel.querySelector('span');
+    if (span.textContent !== value) {
+      span.textContent = value;
+      panel.classList.add('flip');
+      setTimeout(() => panel.classList.remove('flip'), 400);
+    }
+  }
+
+  function updateFlipClock() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+
+    const clockEl = document.getElementById('flip-clock');
+    const msgEl = document.getElementById('elevensies-message');
+
+    // normal digits
+    setPanel('h1', hours[0]);
+    setPanel('h2', hours[1]);
+    setPanel('m1', minutes[0]);
+    setPanel('m2', minutes[1]);
+    setPanel('s1', seconds[0]);
+    setPanel('s2', seconds[1]);
+
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+
+    // 11:00–11:59 = special hour (blue + sparkles)
+    if (hour === 11) {
+      clockEl.classList.add('special-hour');
+    } else {
+      clockEl.classList.remove('special-hour');
+    }
+
+    // 11:00:00–11:00:59 = HAPPY ELEVENSIES rainbow message
+    if (hour === 11 && minute === 0) {
+      msgEl.textContent = "HAPPY ELEVENSIES";
+      msgEl.classList.add('elevensies-active');
+
+    } else {
+      msgEl.textContent = "";
+      msgEl.classList.remove('elevensies-active');
+    }
+  }
+
+  setInterval(updateFlipClock, 1000);
+  updateFlipClock();
+</script>
+
+<script>
+  function updateFullDate() {
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    const today = new Date().toLocaleDateString('en-GB', options);
+    document.getElementById('full-date').textContent = today;
+  }
+
+  updateFullDate();
+</script>
+
+<script>
+    const elevensiesMessage = document.getElementById("elevensies-message");
+
+    function checkElevensies() {
+        const now = new Date();
+        const hour = now.getHours();
+        const minute = now.getMinutes();
+
+    if (hour === 11 && minute === 0) {
+      msgEl.textContent = "HAPPY ELEVENSIES";
+      msgEl.classList.add("elevensies-active");
+    } else {
+      msgEl.textContent = "";
+      msgEl.classList.remove("elevensies-active");
+    }
+  }
+
+  setInterval(checkElevensies, 1000);
+  checkElevensies();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const titles = document.querySelectorAll('.clickable-title');
+    console.log("FOUND TITLES:", titles);
+
+    titles.forEach(el => {
+        el.addEventListener('click', () => {
+            console.log("TITLE CLICKED!");
+            const audio = document.getElementById('crofty-audio');
+            audio.currentTime = 0;
+            audio.play();
+        });
+    });
+});
+</script>
+
+<script>
+// -----------------------------
+// FETCH F1 DATA + STORE IT
+// -----------------------------
+let currentRaceData = {};
+
+async function loadF1() {
+    try {
+        const res = await fetch("/f1");
+        const data = await res.json();
+
+        currentRaceData = data; // store data for modal
+
+        // Fill dashboard
+        document.getElementById("f1-race-name").innerText = data.race_name;
+        document.getElementById("f1-race-date").innerText = data.race_date;
+        document.getElementById("f1-race-time").innerText = data.race_time;
+
+        document.getElementById("f1-driver1").innerText = data.top3[0];
+        document.getElementById("f1-driver2").innerText = data.top3[1];
+        document.getElementById("f1-driver3").innerText = data.top3[2];
+
+    } catch {
+        document.getElementById("f1-race-name").innerText = "F1 data unavailable";
+    }
+}
+
+loadF1();
+
+
+// -----------------------------
+// FILL THE RACE WEEK MODAL
+// -----------------------------
+function fillRaceWeekModal(data) {
+
+    // Event info
+    document.getElementById("rw-race-name").textContent = data.race_name;
+    document.getElementById("rw-circuit-name").textContent = data.circuit_name;
+    document.getElementById("rw-location").textContent = `${data.locality}, ${data.country}`;
+
+    // Sessions
+    document.getElementById("rw-fp1").textContent = data.fp1;
+    document.getElementById("rw-fp2").textContent = data.fp2;
+    document.getElementById("rw-fp3").textContent = data.fp3;
+    document.getElementById("rw-qualifying").textContent = data.qualifying;
+    document.getElementById("rw-race").textContent = data.race;
+
+    // Sprint (only show if exists)
+    if (data.sprint) {
+        document.getElementById("rw-sprint-row").style.display = "flex";
+        document.getElementById("rw-sprint").textContent = data.sprint;
+    } else {
+        document.getElementById("rw-sprint-row").style.display = "none";
+    }
+
+    // Circuit info (NO MAP)
+    document.getElementById("rw-track-length").textContent = `Track Length: ${data.track_length}`;
+    document.getElementById("rw-lap-count").textContent = `Laps: ${data.laps}`;
+    document.getElementById("rw-race-distance").textContent = `Race Distance: ${data.race_distance}`;
+}
+
+
+// -----------------------------
+// MODAL OPEN/CLOSE LOGIC
+// -----------------------------
+const raceweekModal = document.getElementById("raceweek-modal");
+const raceweekOverlay = document.getElementById("raceweek-overlay");
+const raceweekClose = document.getElementById("raceweek-close");
+const f1Left = document.querySelector(".f1-left");
+
+// Open modal
+f1Left.addEventListener("click", () => {
+    fillRaceWeekModal(currentRaceData);
+    raceweekModal.classList.add("show");
+    raceweekOverlay.classList.add("show");
+});
+
+// Close modal
+raceweekClose.addEventListener("click", () => {
+    raceweekModal.classList.remove("show");
+    raceweekOverlay.classList.remove("show");
+});
+
+raceweekOverlay.addEventListener("click", () => {
+    raceweekModal.classList.remove("show");
+    raceweekOverlay.classList.remove("show");
+});
+</script>
+
+<script>
+document.querySelector(".f1-right").addEventListener("click", () => {
+    document.getElementById("leaderboard-modal").style.display = "block";
+});
+
+document.getElementById("leaderboard-close").addEventListener("click", () => {
+    document.getElementById("leaderboard-modal").style.display = "none";
+});
+</script>
+
+<script>
+/* ------------------ NORMALISE NATIONALITY ------------------ */
+function normaliseNationality(n) {
+    if (!n) return "";
+    return n.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+/* ------------------ FLAG IMAGE MAP (normalised keys) ------------------ */
+const flagCodeMap = {
+    "unitedkingdom": "gb",
+    "uk": "gb",
+    "british": "gb",
+    "britain": "gb",
+    "england": "gb",
+    "scotland": "gb",
+    "wales": "gb",
+    "northernireland": "gb",
+
+    "italy": "it",
+    "spain": "es",
+    "netherlands": "nl",
+    "france": "fr",
+    "germany": "de",
+    "australia": "au",
+    "canada": "ca",
+    "usa": "us",
+    "japan": "jp",
+    "finland": "fi",
+    "denmark": "dk",
+    "mexico": "mx",
+    "china": "cn",
+    "brazil": "br",
+    "monaco": "mc"
+};
+
+/* ------------------ LEADERBOARD TEAM COLOURS ------------------ */
+const leaderboardTeamColors = {
+    "mclaren": "#FF7F00",
+    "mercedes": "#00C4B3",
+    "redbull": "#1A1AFF",
+    "ferrari": "#E10600",
+    "williams": "#0057FF",
+    "rb": "#7AA2FF",
+    "astonmartin": "#006F3C", // emerald green
+    "haas": "#FFFFFF",
+    "audi": "#9E0000",
+    "alpine": "#0090FF",
+    "sauber": "#00B0A0",
+    "stake": "#00FF5E"
+};
+
+/* ------------------ TEXT COLOR BASED ON BACKGROUND ------------------ */
+function getTextColor(bgColor) {
+    const r = parseInt(bgColor.substr(1, 2), 16);
+    const g = parseInt(bgColor.substr(3, 2), 16);
+    const b = parseInt(bgColor.substr(5, 2), 16);
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    return brightness > 150 ? "black" : "white";
+}
+
+/* ------------------ LEADERBOARD CLICK LISTENER ------------------ */
+document.querySelector(".f1-right").addEventListener("click", async () => {
+
+    /* Show modal */
+    document.getElementById("leaderboard-modal").style.display = "flex";
+
+    const container = document.getElementById("leaderboard-content");
+    container.innerHTML = "Loading…";
+
+    try {
+        const res = await fetch("/f1_standings");
+        const data = await res.json();
+
+        if (data.error) {
+            container.innerHTML = `<p style="color:red;">Backend error: ${data.error}</p>`;
+            return;
+        }
+
+        const standings = data.drivers_championship;
+        container.innerHTML = "";
+
+        standings.forEach((driver) => {
+
+            /* ------------------ FLAG ------------------ */
+            const rawNationality = driver.driver.nationality;
+            const natKey = normaliseNationality(rawNationality);
+            const flagCode = flagCodeMap[natKey] || "gb";
+            const flagUrl = `https://flagcdn.com/${flagCode}.svg`;
+
+            /* ------------------ NUMBER + NAME ------------------ */
+            const number = driver.driver.number;
+            const name = `${driver.driver.name} ${driver.driver.surname}`;
+
+            /* ------------------ TEAM COLOUR ------------------ */
+            const teamId = driver.teamId;
+
+            /* ⭐ DEBUG: See EXACT team ID + normalised version */
+            console.log("TEAM RAW:", teamId);
+            console.log("TEAM NORMALISED:", normaliseNationality(teamId));
+
+            const bgColor = leaderboardTeamColors[normaliseNationality(teamId)] || "#333";
+            let textColor = getTextColor(bgColor);
+
+            /* ⭐ Force black text for Haas */
+            if (teamId === "haas") {
+                textColor = "black";
+            }
+
+            /* ------------------ POINTS + POSITION ------------------ */
+            const points = driver.points;
+            const position = driver.position;
+
+            /* ------------------ BUILD ROW ------------------ */
+            const row = document.createElement("div");
+            row.classList.add("leaderboard-row");
+            row.classList.add(teamId); // adds team class for styling
+
+            row.style.backgroundColor = bgColor;
+            row.style.color = textColor;
+
+            row.innerHTML = `
+                <span class="driver-position">${position}.</span>
+                <img src="${flagUrl}" class="flag-icon" alt="${rawNationality} flag">
+                <span class="driver-number">#${number}</span>
+                <span class="driver-name">${name}</span>
+                <span class="driver-points">${points} pts</span>
+            `;
+
+            container.appendChild(row);
+        });
+
+    } catch (err) {
+        container.innerHTML = `<p style="color:red;">${err}</p>`;
+    }
+});
+</script>
+
+<script>
+async function loadLiveScores() {
+    try {
+        const res = await fetch("/live-scores");
+        const live = await res.json();
+
+        function applyLiveScore(team, elementId) {
+            const el = document.getElementById(elementId);
+
+            if (!live[team]) return; // no live match → keep fixture text
+
+            const m = live[team];
+
+            el.innerHTML = `
+                ${m.home} ${m.home_goals}–${m.away_goals} ${m.away}<br>
+                ${m.status} • ${m.minute}'
+            `;
+        }
+
+        applyLiveScore("newcastle", "fixture-newcastle");
+        applyLiveScore("man_city", "fixture-mancity");
+        applyLiveScore("middlesbrough", "fixture-boro");
+
+    } catch (err) {
+        console.log("Live score unavailable");
+    }
+}
+
+// refresh every 30 seconds
+setInterval(loadLiveScores, 30000);
+loadLiveScores();
+</script>
+
+<script>
+let previousScores = {
+    newcastle: null,
+    man_city: null,
+    middlesbrough: null
+};
+
+async function loadLiveScores() {
+    try {
+        const res = await fetch("/live-scores");
+        const live = await res.json();
+
+        function applyLiveScore(team, elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+
+            const m = live[team];
+
+            // No live match → keep fixture text
+            if (!m) return;
+
+            // Detect goal
+            const currentScore = `${m.home_goals}-${m.away_goals}`;
+            const previousScore = previousScores[team];
+
+            if (previousScore && previousScore !== currentScore) {
+
+                // 1️⃣ Bubble twinkle
+                el.classList.add("bubble-twinkle");
+                setTimeout(() => el.classList.remove("bubble-twinkle"), 400);
+
+                // 2️⃣ GOAL text twinkle
+                const goalText = document.createElement("div");
+                goalText.classList.add("goal-text");
+                goalText.textContent = "GOAL!";
+                el.appendChild(goalText);
+                setTimeout(() => goalText.remove(), 1200);
+
+                // 3️⃣ Football streak (bubble‑dependent)
+                const streak = document.createElement("div");
+                streak.classList.add("goal-streak");
+                streak.textContent = "⚽";
+                el.appendChild(streak);
+
+                const bubbleWidth = el.offsetWidth;
+
+                streak.animate(
+                    [
+                        { transform: "translateY(-50%) translateX(0)", opacity: 1 },
+                        { transform: `translateY(-50%) translateX(${bubbleWidth}px)`, opacity: 1 },
+                        { transform: `translateY(-50%) translateX(${bubbleWidth + 40}px)`, opacity: 0 }
+                    ],
+                    {
+                        duration: 1200,
+                        easing: "linear",
+                        fill: "forwards"
+                    }
+                );
+
+                setTimeout(() => streak.remove(), 1300);
+            }
+
+            previousScores[team] = currentScore;
+
+            // Status text
+            let statusText = m.status;
+            let minuteText = "";
+
+            if (m.status === "LIVE") minuteText = `${m.minute}'`;
+            if (m.status === "HT") minuteText = "45'";
+            if (m.status === "FT") minuteText = "";
+
+            el.innerHTML = `
+                ${m.home} ${m.home_goals}–${m.away_goals} ${m.away}<br>
+                ${statusText}${minuteText ? ` • ${minuteText}` : ""}
+            `;
+        }
+
+        applyLiveScore("newcastle", "fixture-newcastle");
+        applyLiveScore("man_city", "fixture-mancity");
+        applyLiveScore("middlesbrough", "fixture-boro");
+
+    } catch (err) {
+        console.log("Live score unavailable", err);
+    }
+}
+
+loadLiveScores();
+setInterval(loadLiveScores, 30000);
+</script>
+
+</html>
